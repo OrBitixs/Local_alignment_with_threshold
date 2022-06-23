@@ -5,12 +5,12 @@ from Bio.SubsMat import MatrixInfo
 blosum62 = MatrixInfo.blosum62
 blosum50 = MatrixInfo.blosum50
 
-seq1 = "INTNINPD"
-seq2 = "AINDSQ"
+seq1 = "AINDSQ"
+seq2 = "MTNINPIN"
 
 alignment = AlignmentLocalModified(seq1, seq2)
 alignment.set_gap(8)
-alignment.define_matrix(blosum50)
+alignment.define_matrix(blosum62)
 alignment.set_threshold(3)
 
 alignment.align()

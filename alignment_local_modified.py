@@ -108,21 +108,22 @@ class AlignmentLocalModified:
     def traceback(self):
         current_i, current_j = self.last_tuple
 #        print(f'i: {current_i}, j:{current_j}')
-        for iter in range(0, self._seq1.__len__()):
-#            print(f'i: {current_i}, j:{current_j}, tb[i, j]: {self.tb_matrix[current_i, current_j][0]}')
+        while self.tb_matrix[current_i, current_j] is not None:
+#            print(f'i: {current_i}, j:{current_j}, tb[i, j]: {self.tb_matrix[current_i, current_j]}', end=' ')
             if (self.tb_matrix[current_i, current_j][0] != current_i) and (self.tb_matrix[current_i, current_j][0] != current_i - 1):
                 self.tb_seq2[current_j-1] = '*'
-#                print('*', end='')
+#                print('*')
             elif self.tb_matrix[current_i, current_j][0] == current_i or self.tb_matrix[current_i, current_j][1] == current_j:
                 self.tb_seq2[current_j - 1] = '-'
-#                print('-', end='')
+#                print('-')
             else:
                 self.tb_seq2[current_j - 1] = self.tb_seq1[current_j - 1]
-#                print(self.tb_seq1[current_j - 1], end='')
+#                print(self.tb_seq1[current_j - 1])
 
             current_i, current_j = self.tb_matrix[current_i, current_j]
 
     def print_traceback(self):
+        print()
         print("Alignment of sequence1 and sequence2")
         print('\t',self.tb_seq1)
         print('\t',''.join(self.tb_seq2))
